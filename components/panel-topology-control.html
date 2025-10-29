@@ -1,0 +1,116 @@
+<div id="panel-topology-control" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>拓扑与管控 - 详细参数</h2>
+    <span class="secondary-panel-close">&times;</span>
+  </div>
+
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星座仿真结果演示</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+
+  <body>
+
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <h1>星座仿真结果演示</h1>
+      <div class="header-metrics">
+        <div class="metric-item">
+          <div class="label">收敛时间</div>
+          <div class="value">9.5 min</div>
+        </div>
+        <div class="metric-item">
+          <div class="label">平均最短路径</div>
+          <div class="value">16 hops</div>
+        </div>
+        <div id="simulation-time" class="metric-item">
+          <div class="label">仿真运行时间</div>
+          <div class="value"><span>0.0</span> s</div>
+        </div>
+      </div>
+      <div class="header-controls">
+        <button>切换布局</button>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+
+      <div class="panel panel-stk">
+        <h2 class="panel-title">STK 覆盖/观测示意</h2>
+        <div class="panel-content">
+          <div class="placeholder">
+            <img src="/img/stk.png" alt="STK 仿真图" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-topology">
+        <h2 class="panel-title">星间拓扑/路径示意</h2>
+        <div class="panel-content">
+          <div class="placeholder">
+            <img src="/img/2d.png" alt="星间拓扑图" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-hops">
+        <h2 class="panel-title">用户平均跳数分布</h2>
+        <div class="panel-content">
+          <div class="placeholder">
+            <img src="/img/earth_hops.png" alt="跳数分布图" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-table">
+        <h2 class="panel-title">示例路径信息</h2>
+        <div class="panel-content">
+          <table class="data-table">
+            <thead>
+            <tr>
+              <th>Start</th>
+              <th>End</th>
+              <th>Hops</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>柏林</td>
+              <td>乌鲁木齐</td>
+              <td>18</td>
+            </tr>
+            <tr>
+              <td>马德里</td>
+              <td>重庆</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td>巴黎</td>
+              <td>北京</td>
+              <td>18</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel panel-capacity">
+        <h2 class="panel-title">容量与流量纬度分布</h2>
+        <div class="panel-content">
+          <div class="placeholder">
+            <img src="/img/liuliang.png" alt="容量流量分布图" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+
+  </body>
+</div>

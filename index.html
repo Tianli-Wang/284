@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仿真系统界面 - 卫星星座</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<div class="app-container">
+
+  <nav class="toolbar">
+    <button>新建</button>
+    <button>打开</button>
+    <button>保存</button>
+    <button>运行</button>
+    <button>暂停</button>
+    <button>停止</button>
+    <button>配置</button>
+    <button>导出</button>
+  </nav>
+
+  <main class="main-content">
+
+    <section class="panel" id="param-settings">
+      <h2>参数设置区</h2>
+      <div class="panel-content">
+        <ul class="param-list">
+          <li class="param-item" data-panel-target="panel-sim-control">仿真控制</li>
+          <li class="param-item" data-panel-target="panel-orbit-maneuver">轨道机动</li>
+          <li class="param-item" data-panel-target="panel-attitude-control">姿态控制</li>
+          <li class="param-item" data-panel-target="panel-link-calc">星间链路计算</li>
+          <li class="param-item" data-panel-target="panel-link-recovery">建链复链</li>
+          <li class="param-item" data-panel-target="panel-topology-control">拓扑与管控</li>
+          <li class="param-item" data-panel-target="panel-routing">路由</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="scene-display">
+      <h2>链路仿真区</h2>
+      <div class="viz-placeholder">
+        <img src="img/satellite%20links.png" alt="卫星链路仿真图" class="scene-image">
+      </div>
+    </section>
+
+    <section class="panel" id="status-monitor">
+      <h2>状态监控区</h2>
+      <div class="panel-content">
+        <div id="simulation-time" class="metric-item" style="text-align: left; margin-bottom: 15px;">
+          <div class="label" style="display:inline-block; margin-right: 5px;">仿真运行时间:</div>
+          <div class="value" style="color: var(--accent-color); font-weight: bold;"><span>0.0</span> s</div>
+        </div>
+        <ul class="status-list">
+          <li><strong>仿真状态:</strong> <span class="value running">运行中</span></li>
+          <li><strong>当前时刻:</strong> <span class="value">2024-04-01 12:30:45</span></li>
+          <li><strong>仿真进度:</strong>
+            <div class="progress-bar-container"><progress value="75" max="100"></progress><span
+              class="value">75%</span></div>
+          </li>
+          <li><strong>CPU使用:</strong> <span class="value">76%</span></li>
+          <li><strong>内存使用:</strong> <span class="value">213 / 512 GB</span></li>
+          <li><strong>活动链路:</strong> <span class="value">267 / 500</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel" id="result-output">
+      <h2>结果输出区</h2>
+      <div class="filter-controls">
+        <label for="link-filter">状态筛选:</label>
+        <select id="link-filter">
+          <option value="all">所有链路 (500)</option>
+          <option value="established">已建立</option>
+          <option value="disconnected">断开</option>
+        </select>
+        <span id="record-summary"></span>
+      </div>
+      <div class="panel-content">
+        <div id="link-list-container">
+        </div>
+      </div>
+      <div class="pagination-controls">
+        <button id="prev-page" disabled>‹ 上一页</button>
+        <div id="pagination-numbers">
+        </div>
+        <button id="next-page" disabled>下一页 ›</button>
+      </div>
+    </section>
+
+    <div id="component-panel-loaders">
+      <div id="loader-panel-sim-control"></div>
+      <div id="loader-panel-orbit-maneuver"></div>
+      <div id="loader-panel-attitude-control"></div>
+      <div id="loader-panel-link-calc"></div>
+      <div id="loader-panel-link-recovery"></div>
+      <div id="loader-panel-topology-control"></div>
+      <div id="loader-panel-routing"></div>
+    </div>
+
+  </main>
+
+  <footer class="status-bar">
+    <div class="status-bar-left">
+      <span>就绪</span>
+    </div>
+    <div class="status-bar-right">
+      <span>节点: 500</span>
+      <span>链路: 267</span>
+      <span>步长: 1.0s</span>
+      <span>实时比: 1:1.5</span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/main.js" defer></script>
+
+</body>
+</html>

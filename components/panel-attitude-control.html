@@ -1,0 +1,51 @@
+<div id="panel-attitude-control" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>卫星姿态控制 - 详细参数</h2>
+    <span class="secondary-panel-close">&times;</span>
+  </div>
+  <div class="secondary-panel-body">
+    <div class="form-group">
+      <label for="att-control-mode">控制模式:</label>
+      <select id="att-control-mode">
+        <option value="nadir_pointing">对地指向 (Nadir Pointing)</option>
+        <option value="inertial_pointing">惯性指向 (Inertial Pointing)</option>
+        <option value="target_tracking">目标跟踪 (Target Tracking)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="att-target-type">目标姿态定义:</label>
+      <select id="att-target-type">
+        <option value="euler">欧拉角 (Euler Angles)</option>
+        <option value="quaternion">四元数 (Quaternion)</option>
+      </select>
+    </div>
+    <div class="form-group" id="euler-inputs">
+      <label>目标欧拉角 (deg):</label>
+      <div class="attitude-input-group">
+        <input type="number" id="att-euler-roll" placeholder="Roll (滚动)">
+        <input type="number" id="att-euler-pitch" placeholder="Pitch (俯仰)">
+        <input type="number" id="att-euler-yaw" placeholder="Yaw (偏航)">
+      </div>
+    </div>
+    <div class="form-group" id="quaternion-inputs" style="display: none;">
+      <label>目标四元数 (q1, q2, q3, q4):</label>
+      <div class="attitude-input-group">
+        <input type="number" id="att-quat-q1" placeholder="q1 (x)">
+        <input type="number" id="att-quat-q2" placeholder="q2 (y)">
+        <input type="number" id="att-quat-q3" placeholder="q3 (z)">
+        <input type="number" id="att-quat-q4" placeholder="q4 (w, 标量)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="att-control-law">控制律:</label>
+      <select id="att-control-law">
+        <option value="pid">PID 控制</option>
+        <option value="lqr">LQR</option>
+      </select>
+    </div>
+  </div>
+  <div class="secondary-panel-footer">
+    <button class="btn-cancel">取消</button>
+    <button class="btn-save">确认</button>
+  </div>
+</div>

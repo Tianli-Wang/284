@@ -1,0 +1,43 @@
+<div id="panel-orbit-maneuver" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>轨道机动 - 详细参数</h2>
+    <span class="secondary-panel-close">&times;</span>
+  </div>
+  <div class="secondary-panel-body">
+    <div class="form-group">
+      <label for="maneuver-epoch">机动时刻 (UTC):</label>
+      <input type="datetime-local" id="maneuver-epoch">
+    </div>
+    <div class="form-group">
+      <label for="maneuver-type">机动类型:</label>
+      <select id="maneuver-type">
+        <option value="impulsive">瞬时脉冲 (Impulsive)</option>
+        <option value="hohmann">Hohmann 转移</option>
+        <option value="finite">有限推力 (Finite Burn)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="maneuver-coordsys">ΔV 坐标系:</label>
+      <select id="maneuver-coordsys">
+        <option value="vnc">VNC (切向/法向/径向)</option>
+        <option value="j2000">J2000 (I/J/K)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>ΔV 矢量 (m/s):</label>
+      <div class="dv-input-group">
+        <input type="number" id="maneuver-dv-1" placeholder="V (切向)">
+        <input type="number" id="maneuver-dv-2" placeholder="N (法向)">
+        <input type="number" id="maneuver-dv-3" placeholder="C (径向)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="maneuver-thrust">推力大小 (N):</label>
+      <input type="number" id="maneuver-thrust" value="0.1" placeholder="仅用于有限/连续推力">
+    </div>
+  </div>
+  <div class="secondary-panel-footer">
+    <button class="btn-cancel">取消</button>
+    <button class="btn-save">确认</button>
+  </div>
+</div>
