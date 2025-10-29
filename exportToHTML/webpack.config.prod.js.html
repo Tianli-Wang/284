@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>webpack.config.prod.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+webpack.config.prod.js</font>
+</center></td></tr></table>
+<pre><span class="s0">const </span><span class="s2">{ </span><span class="s1">merge </span><span class="s2">} = </span><span class="s1">require</span><span class="s2">(</span><span class="s3">'webpack-merge'</span><span class="s2">);</span>
+<span class="s0">const </span><span class="s1">common </span><span class="s2">= </span><span class="s1">require</span><span class="s2">(</span><span class="s3">'./webpack.common.js'</span><span class="s2">);</span>
+<span class="s0">const </span><span class="s1">HtmlWebpackPlugin </span><span class="s2">= </span><span class="s1">require</span><span class="s2">(</span><span class="s3">'html-webpack-plugin'</span><span class="s2">);</span>
+<span class="s0">const </span><span class="s1">CopyPlugin </span><span class="s2">= </span><span class="s1">require</span><span class="s2">(</span><span class="s3">'copy-webpack-plugin'</span><span class="s2">);</span>
+
+<span class="s1">module</span><span class="s2">.</span><span class="s1">exports </span><span class="s2">= </span><span class="s1">merge</span><span class="s2">(</span><span class="s1">common</span><span class="s2">, {</span>
+  <span class="s1">mode</span><span class="s2">: </span><span class="s3">'production'</span><span class="s2">,</span>
+  <span class="s1">plugins</span><span class="s2">: [</span>
+    <span class="s0">new </span><span class="s1">HtmlWebpackPlugin</span><span class="s2">({</span>
+      <span class="s1">template</span><span class="s2">: </span><span class="s3">'./index.html'</span><span class="s2">,</span>
+    <span class="s2">}),</span>
+    <span class="s0">new </span><span class="s1">CopyPlugin</span><span class="s2">({</span>
+      <span class="s1">patterns</span><span class="s2">: [</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'img'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'img' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'css'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'css' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'js/vendor'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'js/vendor' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'icon.svg'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'icon.svg' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'favicon.ico'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'favicon.ico' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'robots.txt'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'robots.txt' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'icon.png'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'icon.png' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'404.html'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'404.html' </span><span class="s2">},</span>
+        <span class="s2">{ </span><span class="s1">from</span><span class="s2">: </span><span class="s3">'site.webmanifest'</span><span class="s2">, </span><span class="s1">to</span><span class="s2">: </span><span class="s3">'site.webmanifest' </span><span class="s2">},</span>
+      <span class="s2">],</span>
+    <span class="s2">}),</span>
+  <span class="s2">],</span>
+<span class="s2">});</span>
+</pre>
+</body>
+</html>

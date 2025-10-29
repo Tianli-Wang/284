@@ -5,13 +5,34 @@
   </div>
   <div class="secondary-panel-body">
     <p>在这里配置详细的仿真控制参数。</p>
+
+    <div class="form-group">
+      <label for="constellation-type">星座构型:</label>
+      <select id="constellation-type" name="constellation-type">
+        <option value="walker">Walker</option>
+        <option value="polar">极轨道</option>
+        <option value="custom">自定义</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="orbit-planes">轨道数:</label>
+      <input type="number" id="orbit-planes" value="6" min="1">
+    </div>
+    <div class="form-group">
+      <label for="sats-per-plane">每轨道卫星数:</label>
+      <input type="number" id="sats-per-plane" value="11" min="1">
+    </div>
+    <div class="form-group">
+      <label for="phase-factor">相位因子:</label>
+      <input type="number" id="phase-factor" value="1" min="0">
+    </div>
     <div class="form-group">
       <label for="sim-start-time">仿真开始时间:</label>
-      <input type="datetime-local" id="sim-start-time" value="2024-04-01T12:00:00">
+      <input type="datetime-local" id="sim-start-time" value="2025-04-01T12:00:00">
     </div>
     <div class="form-group">
       <label for="sim-end-time">仿真结束时间:</label>
-      <input type="datetime-local" id="sim-end-time" value="2024-04-02T12:00:00">
+      <input type="datetime-local" id="sim-end-time" value="2025-05-02T12:00:00">
     </div>
     <div class="form-group">
       <label for="sim-step">仿真步长 (秒):</label>

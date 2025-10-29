@@ -106,6 +106,31 @@ function initializeApp() {
       closePanel(panel);
     }
 
+      // --- [在这里添加新的 ELSE IF 块] ---
+    // Handle Image Switcher radio button clicks
+    else if (event.target.matches('input[name="image-group-toggle"]')) {
+
+      // 1. 获取被选中 radio 的 value (例如 "group1")
+      const targetGroupId = event.target.value;
+
+      // 2. 找到当前面板内的所有图片组 (更精确)
+      const currentPanel = event.target.closest('.secondary-panel');
+      if (!currentPanel) return; // 如果找不到面板，则退出
+      const imageGroupsInPanel = currentPanel.querySelectorAll('.image-display-group');
+
+      // 3. 隐藏当前面板的所有图片组 (移除 active)
+      imageGroupsInPanel.forEach(group => {
+        group.classList.remove('active');
+      });
+
+      // 4. 显示目标图片组 (添加 active)
+      const targetGroup = currentPanel.querySelector('#' + targetGroupId); // 在当前面板内查找 ID
+      if (targetGroup) {
+        targetGroup.classList.add('active');
+      }
+    }
+    // --- [结束新的 ELSE IF 块] ---
+
     // Handle Save/Apply buttons within panels
     if (event.target.matches('.secondary-panel-footer .btn-apply, .secondary-panel-footer .btn-save')) {
 
