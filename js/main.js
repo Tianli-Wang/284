@@ -108,8 +108,32 @@ function initializeApp() {
 
     // Handle Save/Apply buttons within panels
     if (event.target.matches('.secondary-panel-footer .btn-apply, .secondary-panel-footer .btn-save')) {
-      console.log('数据已保存!'); // Placeholder action
+
       const panel = event.target.closest('.secondary-panel');
+
+      // 检查是否是路由面板的保存按钮
+      if (panel && panel.id === 'panel-routing') {
+
+        // --- 这是您 <script> 中的逻辑 ---
+        const selectedOption = document.querySelector('input[name="route_priority"]:checked').value;
+        let priorityText = "";
+
+        if (selectedOption === "delay") {
+          priorityText = "延迟优先";
+        } else if (selectedOption === "flow") {
+          priorityText = "流量优先";
+        }
+
+        // 在实际应用中，您会在这里调用后端API进行路由计算
+        alert(`已选择: ${priorityText}。正在进行路由计算...`);
+        // ---------------------------------
+
+      } else {
+        // 其他面板的默认保存操作
+        console.log('数据已保存!'); // Placeholder action
+      }
+
+      // 无论哪个面板，点击后都关闭
       closePanel(panel);
     }
   });
