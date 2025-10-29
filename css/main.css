@@ -1280,3 +1280,51 @@ progress::-moz-progress-bar { background-color: #007bff; }
   font-size: 1.1em;
   color: #333;
 }
+
+
+/* ---
+  新增：用于 panel-link-recovery 的样式
+  (基于 image_328498.png 布局)
+--- */
+
+.form-fieldset {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 15px 15px 15px;
+  margin-bottom: 20px;
+}
+
+.form-fieldset legend {
+  padding: 0 5px;
+  font-weight: bold;
+  color: var(--text-secondary-color);
+}
+
+.form-grid-inputs {
+  display: grid;
+  /* 4列布局: 标签, 输入框, 标签, 输入框 */
+  grid-template-columns: auto 1fr auto 1fr;
+  /* 行间距, 列间距 */
+  gap: 10px 8px;
+  align-items: center;
+}
+
+.form-grid-inputs label {
+  font-weight: 500;
+  text-align: right; /* 标签右对齐 */
+}
+
+/* 覆盖 .secondary-panel-body .form-group input 默认样式 */
+.form-grid-inputs input {
+  width: 100%; /* 输入框填满网格列 */
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-grid-inputs input[readonly] {
+  background-color: #f0f0f0;
+  color: #777;
+  cursor: not-allowed;
+}

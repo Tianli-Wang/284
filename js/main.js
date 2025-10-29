@@ -244,7 +244,10 @@ function initializeApp() {
   } else {
     console.warn("Pagination elements not found in HTML. Skipping pagination initialization.");
   }
-
+// --- [在这里添加新行] ---
+  // 初始化图片切换器逻辑
+  initializeImageSwitcher();
+  // -------------------------
   console.log("App initialization complete. All events bound.");
 }
 
@@ -256,3 +259,42 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
   });
 });
+
+/**
+ * [新增] 初始化图片切换器
+ * 负责监听单选框点击，并显示/隐藏对应的图片组
+ */
+function initializeImageSwitcher() {
+  // 找到所有切换器单选框
+  const radioButtons = document.querySelectorAll('input[name="image-group-toggle"]');
+
+  // 找到所有图片组
+  const imageGroups = document.querySelectorAll('.image-display-group');
+
+  if (radioButtons.length === 0 || imageGroups.length === 0) {
+    // 如果页面上没有这些元素，就不执行
+    return;
+  }
+
+  // 定义切换函数
+  function handleImageSwitch(event) {
+    // 1. 获取被选中 radio 的 value (例如 "group1")
+    const targetGroupId = event.target.value;
+
+    // 2. 隐藏所有图片组 (移除 active)
+    imageGroups.forEach(group => {
+      group.classList.remove('active');
+    });
+
+    // 3. 显示目标图片组 (添加 active)
+    const targetGroup = document.getElementById(targetGroupId);
+    if (targetGroup) {
+      targetGroup.classList.add('active');
+    }
+  }
+
+  // 为每个单选框添加点击事件监听
+  radioButtons.forEach(radio => {
+    radio.addEventListener('click', handleImageSwitch);
+  });
+}
