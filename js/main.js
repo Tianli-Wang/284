@@ -201,7 +201,7 @@ function initializeApp() {
     function generateLinkData() { /* ... (keep function as provided) ... */
       const data = [];
       const statuses = ['established', 'disconnected'];
-      for (let i = 1; i <= 500; i++) {
+      for (let i = 1; i <= 700; i++) {
         const status = statuses[Math.floor(Math.random() * 2)];
         const snr = (Math.random() * 20 + 5).toFixed(1);
         const ber = (Math.random() * 10 + 1).toFixed(1) + 'e-' + Math.floor(Math.random() * 5 + 8);
