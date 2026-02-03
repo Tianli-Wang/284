@@ -6,116 +6,242 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>仿真系统界面 - 卫星星座</title>
   <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 
 <body>
 
-<div class="app-container">
+  <div class="app-container">
 
-  <nav class="toolbar">
-    <button>新建</button>
-    <button>打开</button>
-    <button>保存</button>
-    <button>运行</button>
-    <button>暂停</button>
-    <button>停止</button>
-    <button>配置</button>
-    <button>导出</button>
-  </nav>
+    <header class="app-header">
+      <div class="logo">🛰️ 卫星星座仿真系统</div>
+    </header>
 
-  <main class="main-content">
+    <main class="main-content">
 
-    <section class="panel" id="param-settings">
-      <h2>参数设置区</h2>
-      <div class="panel-content">
-        <ul class="param-list">
-          <li class="param-item" data-panel-target="panel-sim-control">仿真控制</li>
-          <li class="param-item" data-panel-target="panel-orbit-maneuver">轨道机动</li>
-          <li class="param-item" data-panel-target="panel-attitude-control">姿态控制</li>
-          <li class="param-item" data-panel-target="panel-link-calc">链路计算</li>
-          <li class="param-item" data-panel-target="panel-link-recovery">建链复链</li>
-          <li class="param-item" data-panel-target="panel-topology-control">组网与管控</li>
-        </ul>
-      </div>
-    </section>
+      <section class="panel" id="status-monitor">
+        <h2>仿真状态</h2>
+        <div class="panel-content">
+          <div class="control-group"
+            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+            <h3 style="margin-bottom: 0;">当前阶段</h3>
+            <div class="btn-tool" style="width: auto; padding: 4px 12px; margin-bottom: 0;">标校中</div>
+          </div>
 
-    <section class="panel" id="scene-display">
-      <h2>链路仿真区</h2>
-      <div class="viz-placeholder">
-        <img src="img/satellites.png" alt="卫星链路仿真图" class="scene-image">
-      </div>
-    </section>
+          <!-- 流程图组件 -->
+          <div class="process-flow">
+            <div class="process-step active">
+              <div class="step-circle">标校</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="process-step">
+              <div class="step-circle">捕获</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="process-step">
+              <div class="step-circle">跟踪</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="process-step">
+              <div class="step-circle">通信</div>
+            </div>
+          </div>
 
-    <section class="panel" id="status-monitor">
-      <h2>状态监控区</h2>
-      <div class="panel-content">
-        <div id="simulation-time" class="metric-item" style="text-align: left; margin-bottom: 15px;">
-          <div class="label" style="display:inline-block; margin-right: 5px;">仿真运行时间:</div>
-          <div class="value" style="color: var(--accent-color); font-weight: bold;"><span>0.0</span> s</div>
+          <div class="control-group" style="margin-top: 10px; padding: 0 5px;">
+            <div class="button-grid">
+              <button class="btn-tool btn-primary" id="btn-mode-auto" onclick="setRunMode('auto')">⚡ 自动运行</button>
+              <button class="btn-tool" id="btn-mode-step" onclick="setRunMode('step')">👣 单阶段运行</button>
+            </div>
+          </div>
         </div>
-        <ul class="status-list">
-          <li><strong>仿真状态:</strong> <span class="value running">运行中</span></li>
-          <li><strong>当前时刻:</strong> <span class="value">2025-10-30 2:30:45</span></li>
-          <li><strong>仿真进度:</strong>
-            <div class="progress-bar-container"><progress value="75" max="100"></progress><span
-              class="value">75%</span></div>
-          </li>
-          <li><strong>CPU使用:</strong> <span class="value">76%</span></li>
-          <li><strong>内存使用:</strong> <span class="value">113 / 512 GB</span></li>
-          <li><strong>活动链路:</strong> <span class="value">567 / 700</span></li>
-        </ul>
-      </div>
-    </section>
 
-    <section class="panel" id="result-output">
-      <h2>链路状态</h2>
-      <div class="filter-controls">
-        <label for="link-filter">状态筛选:</label>
-        <select id="link-filter">
-          <option value="all">所有链路 </option>
-          <option value="established">已建立</option>
-          <option value="disconnected">断开</option>
-        </select>
-        <span id="record-summary"></span>
-      </div>
-      <div class="panel-content">
-        <div id="link-list-container">
+
+      </section>
+
+      <section class="panel" id="input-area">
+        <h2>参数输入 (需全部完成)</h2>
+        <div class="panel-content">
+          <div class="control-group">
+            <div class="module-grid">
+              <button class="param-item btn-module" data-panel-target="panel-environment-params">
+                <span class="status-icon"></span> 1️⃣ 环境参数输入
+              </button>
+              <button class="param-item btn-module" data-panel-target="panel-orbit-params">
+                <span class="status-icon"></span> 2️⃣ 轨道参数输入
+              </button>
+              <button class="param-item btn-module" data-panel-target="panel-terminal-params">
+                <span class="status-icon"></span> 3️⃣ 终端参数输入
+              </button>
+              <button class="param-item btn-module" data-panel-target="panel-device-params">
+                <span class="status-icon"></span> 4️⃣ 器件参数输入
+              </button>
+              <button class="param-item btn-module" data-panel-target="panel-task-params">
+                <span class="status-icon"></span> 5️⃣ 任务参数输入
+              </button>
+            </div>
+            <button id="btn-quick-confirm" class="btn-tool"
+              style="width: 100%; margin-top: 10px; background: #e8f0fe; color: #1a73e8; border: 1px solid #1a73e8; font-weight: bold;">
+              ✅ 一键确认所有输入
+            </button>
+          </div>
+
+          <!-- 弹窗组件加载容器 -->
+          <div id="component-panels-container">
+            <div id="loader-panel-environment-params"></div>
+            <div id="loader-panel-orbit-params"></div>
+            <div id="loader-panel-terminal-params"></div>
+            <div id="loader-panel-device-params"></div>
+            <div id="loader-panel-task-params"></div>
+          </div>
         </div>
-      </div>
-      <div class="pagination-controls">
-        <button id="prev-page" disabled>‹ 上一页</button>
-        <div id="pagination-numbers">
+      </section>
+
+      <section class="panel" id="function-control">
+        <h2>工况注入</h2>
+        <div class="panel-content">
+          <div class="control-group">
+            <div class="button-grid">
+              <button class="btn-tool">📄 断链</button>
+              <button class="btn-tool">📂 抖动</button>
+              <button class="btn-tool">💾 误差</button>
+              <button class="btn-tool btn-primary">▶ 环境</button>
+              <button class="btn-tool">⏸ 姿态</button>
+              <button class="btn-tool btn-danger">⏹ 轨道</button>
+
+            </div>
+          </div>
         </div>
-        <button id="next-page" disabled>下一页 ›</button>
+      </section>
+
+
+
+
+      <section class="panel" id="scene-display">
+        <h2>双星PAT仿真</h2>
+        <div class="panel-content"
+          style="display: flex; flex-direction: column; gap: 10px; padding: 0; overflow: hidden;">
+          <!-- 第一行：大图 + 2*2 小图 -->
+          <div style="flex: 2; display: flex; gap: 10px; min-height: 0;">
+            <!-- 左侧：大图 -->
+            <div id="large-monitoring-summary"
+              style="flex: 2; position: relative; overflow: hidden; background: #fff; border-radius: 8px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center;">
+                <div style="font-size: 24px; color: #1a73e8; font-weight: bold;">双星光学链路总览</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">实时 PAT 捕获、跟踪与保持状态</div>
+              </div>
+              <div style="position:absolute; top:10px; left:10px; color:rgba(0,0,0,0.5); font-size:12px; z-index:10;">
+                系统全景监测</div>
+            </div>
+            <!-- 右侧：2*2 小图 -->
+            <div
+              style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px;">
+              <div id="threejs-viz-1"
+                style="background:#fff; border:1px solid #eee; border-radius: 4px; position: relative;">
+                <small
+                  style="color:#888; font-size:10px; position:absolute; top:5px; left:5px; z-index: 10;">终端复合轴1</small>
+              </div>
+              <div id="threejs-viz-2"
+                style="background:#fff; border:1px solid #eee; border-radius: 4px; position: relative;">
+                <small
+                  style="color:#888; font-size:10px; position:absolute; top:5px; left:5px; z-index: 10;">终端复合轴2</small>
+              </div>
+              <div class="viz-placeholder" style="background:#fff; border:1px solid #eee; position: relative;">
+                <small style="color:#888; font-size:10px; position:absolute; top:5px; left:5px;">终端光斑1</small>
+                <canvas id="canvas-spot-1" style="width: 100%; height: 100%;"></canvas>
+              </div>
+              <div class="viz-placeholder" style="background:#fff; border:1px solid #eee; position: relative;">
+                <small style="color:#888; font-size:10px; position:absolute; top:5px; left:5px;">终端光斑2</small>
+                <canvas id="canvas-spot-2" style="width: 100%; height: 100%;"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第二行：并列三个小图 -->
+          <div style="flex: 1; display: flex; gap: 10px; min-height: 0;">
+            <div id="chart-link-loss" style="flex: 1; background: #0a0a0a; border: 1px solid #222; border-radius: 4px;">
+            </div>
+            <div id="chart-ber" style="flex: 1; background: #0a0a0a; border: 1px solid #222; border-radius: 4px;"></div>
+            <div id="chart-gain" style="flex: 1; background: #0a0a0a; border: 1px solid #222; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="result-output">
+        <h2 style="display: flex; align-items: center;">
+          <span style="flex: 1;">仿真控制</span>
+          <div class="button-grid"
+            style="width: auto; gap: 5px; flex: 0 0 auto; display: flex; justify-content: center;">
+            <button class="btn-tool simulation-btn" data-action="start" id="sim-start-btn" disabled>▶ 运行</button>
+            <button class="btn-tool simulation-btn" data-action="pause" id="sim-pause-btn" disabled>⏸ 暂停</button>
+            <button class="btn-tool simulation-btn" data-action="stop" id="sim-stop-btn" disabled>⏹ 停止</button>
+          </div>
+          <span id="current-timeline-time"
+            style="font-size: 12px; color: #666; font-weight: normal; flex: 1; text-align: right;">00:00:00</span>
+        </h2>
+
+        <div class="timeline-bar">
+          <span class="time-mark">全局事件</span>
+          <input type="range" id="sim-timeline" min="0" max="100" value="0" step="0.1">
+          <!-- <span class="time-mark">01:40</span> -->
+        </div>
+
+        <div class="timeline-bar event-timeline-container" style="margin-top: 10px;">
+          <span class="time-mark" style="color: #999;">事件时间</span>
+          <div id="event-timeline" class="event-line">
+            <!-- 事件标记点将在这里动态生成 -->
+          </div>
+        </div>
+
+      </section>
+
+      <section class="panel" id="extra-panel">
+        <h2>状态查询</h2>
+        <div class="panel-content">
+          <div class="control-group">
+            <div class="button-grid">
+              <button class="btn-tool">扫描</button>
+              <button class="btn-tool">跟踪</button>
+              <button class="btn-tool">通信</button>
+              <button class="btn-tool">性能</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="report-output">
+        <h2>事件流</h2>
+        <div class="panel-content" style="padding: 10px; overflow-y: auto;">
+          <div id="event-stream-container" class="report-content">
+            <!-- 动态生成的事件日志将显示在这里 -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="status-bar">
+      <div class="status-bar-left">
+        <span>系统状态: <span class="value running" style="color:#188038; font-weight:bold;">运行中</span></span>
+        <span style="margin-left: 15px;">进度:
+          <progress value="75" max="100" style="width:60px; vertical-align:middle;"></progress>
+          <span class="value">75%</span>
+        </span>
       </div>
-    </section>
+      <div class="status-bar-right">
+        <span>CPU: 76%</span>
+        <span>内存: 113/512 GB</span>
+        <span>活跃链路: 567/700</span>
+        <span>步长: 1.0s</span>
+      </div>
+    </footer>
 
-    <div id="component-panel-loaders">
-      <div id="loader-panel-sim-control"></div>
-      <div id="loader-panel-orbit-maneuver"></div>
-      <div id="loader-panel-attitude-control"></div>
-      <div id="loader-panel-link-calc"></div>
-      <div id="loader-panel-link-recovery"></div>
-      <div id="loader-panel-topology-control"></div>
-      <div id="loader-panel-routing"></div>
-    </div>
+  </div>
 
-  </main>
-
-  <footer class="status-bar">
-    <div class="status-bar-left">
-      <span>就绪</span>
-    </div>
-    <div class="status-bar-right">
-      <span>节点: 700</span>
-      <span>链路: 567</span>
-      <span>步长: 1.0s</span>
-    </div>
-  </footer>
-
-</div>
-
-<script src="js/main.js" defer></script>
+  <script src="js/main.js" defer></script>
 
 </body>
+
 </html>

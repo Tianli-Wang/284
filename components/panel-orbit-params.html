@@ -1,0 +1,122 @@
+<div id="panel-orbit-params" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>轨道参数配置</h2>
+    <button class="secondary-panel-close">×</button>
+  </div>
+  <div class="secondary-panel-body">
+    <!-- 卫星 1 配置 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">卫星 1 (MySat_1)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>半长轴 [km]</label>
+          <input type="number" step="any" value="6978.137">
+        </div>
+        <div class="form-group">
+          <label>偏心率</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>倾角 [deg]</label>
+          <input type="number" step="any" value="45.0">
+        </div>
+        <div class="form-group">
+          <label>近地点幅角 [deg]</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>升交点赤经 [deg]</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+        <div class="form-group">
+          <label>平近点角 [deg]</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>质量 [kg]</label>
+          <input type="number" step="any" value="1000">
+        </div>
+        <div class="form-group">
+          <label>阻力面积 [m²]</label>
+          <input type="number" step="any" value="2.2">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>阻力系数 (Cd)</label>
+        <input type="number" step="any" value="2.2">
+      </div>
+    </fieldset>
+
+    <!-- 卫星 2 配置 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">卫星 2 (MySat_2)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>半长轴 [km]</label>
+          <input type="number" step="any" value="7000.0">
+        </div>
+        <div class="form-group">
+          <label>偏心率</label>
+          <input type="number" step="any" value="0.001">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>倾角 [deg]</label>
+          <input type="number" step="any" value="98.0">
+        </div>
+        <div class="form-group">
+          <label>近地点幅角 [deg]</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>升交点赤经 [deg]</label>
+          <input type="number" step="any" value="30.0">
+        </div>
+        <div class="form-group">
+          <label>平近点角 [deg]</label>
+          <input type="number" step="any" value="0.0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>质量 [kg]</label>
+          <input type="number" step="any" value="500">
+        </div>
+        <div class="form-group">
+          <label>阻力面积 [m²]</label>
+          <input type="number" step="any" value="1.5">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>阻力系数 (Cd)</label>
+        <input type="number" step="any" value="2.2">
+      </div>
+    </fieldset>
+
+    <!-- 物理常数 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">物理常数</legend>
+      <div class="form-group">
+        <label>光速 (c_light) [km/s]</label>
+        <input type="number" step="any" value="299792.458">
+      </div>
+      <div class="form-group">
+        <label>激光频率 (fc) [Hz]</label>
+        <input type="number" step="any" value="193.5e12">
+      </div>
+    </fieldset>
+  </div>
+  <div class="secondary-panel-footer">
+    <button class="btn-cancel">取消</button>
+    <button class="btn-save">确认保存</button>
+  </div>
+</div>

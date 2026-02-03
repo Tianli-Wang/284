@@ -1,0 +1,123 @@
+<div id="panel-terminal-params" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>终端参数配置</h2>
+    <button class="secondary-panel-close">×</button>
+  </div>
+  <div class="secondary-panel-body">
+    <!-- 激光器与光学天线 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">光学天线与激光特性</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>波长 (Wavelength) [nm]</label>
+          <input type="number" step="any" value="1550">
+        </div>
+        <div class="form-group">
+          <label>入瞳功率 (OpticalPower) [W]</label>
+          <input type="number" step="any" value="2">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>发射光学效率</label>
+          <input type="number" step="any" value="0.75">
+        </div>
+        <div class="form-group">
+          <label>接收光学效率</label>
+          <input type="number" step="any" value="0.66">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>天线孔径 (Diameter) [mm]</label>
+          <input type="number" step="any" value="56">
+        </div>
+        <div class="form-group">
+          <label>散散角 (Divergence) [mrad]</label>
+          <input type="number" step="any" value="60">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>分光比 (Comm/Track)</label>
+          <input type="number" step="any" value="0.95">
+        </div>
+        <div class="form-group">
+          <label>指向误差 (total_rms) [μrad]</label>
+          <input type="number" step="any" value="2.0">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 光纤耦合器参数 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">光纤耦合器 (Coupler)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>光纤模场半径 (wb) [μm]</label>
+          <input type="number" step="any" value="5">
+        </div>
+        <div class="form-group">
+          <label>系统焦距 (fd) [cm]</label>
+          <input type="number" step="any" value="45">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>等效遮挡比 (eps)</label>
+        <input type="number" step="any" value="0">
+      </div>
+    </fieldset>
+
+    <!-- 探测器与解调 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">探测器与通信解调</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>响应度 (R) [A/W]</label>
+          <input type="number" step="any" value="0.78">
+        </div>
+        <div class="form-group">
+          <label>等效噪声温度 (T) [K]</label>
+          <input type="number" step="any" value="300">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>等效电阻 (Req) [Ω]</label>
+          <input type="number" step="any" value="1000">
+        </div>
+        <div class="form-group">
+          <label>暗电流 (Id) [A]</label>
+          <input type="number" step="any" value="1.5e-9">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>带宽 (B_mode)</label>
+          <select>
+            <option value="2.5G" selected>2.5 GHz</option>
+            <option value="1.25G">1.25 GHz</option>
+            <option value="10G">10 GHz</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>调制格式</label>
+          <select>
+            <option value="QPSK" selected>QPSK</option>
+            <option value="BPSK">BPSK</option>
+            <option value="16QAM">16QAM</option>
+            <option value="64QAM">64QAM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>接收机灵敏度 [μW]</label>
+        <input type="number" step="any" value="0.0316">
+      </div>
+    </fieldset>
+  </div>
+  <div class="secondary-panel-footer">
+    <button class="btn-cancel">取消</button>
+    <button class="btn-save">确认保存</button>
+  </div>
+</div>

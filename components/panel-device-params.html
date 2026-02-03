@@ -1,0 +1,147 @@
+<div id="panel-device-params" class="secondary-panel">
+  <div class="secondary-panel-header">
+    <h2>器件参数配置</h2>
+    <button class="secondary-panel-close">×</button>
+  </div>
+  <div class="secondary-panel-body">
+    <!-- 仿真通用设置 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">仿真通用设置</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>LR 求解器频率 (F_s) [Hz]</label>
+          <input type="number" step="any" value="60000">
+        </div>
+        <div class="form-group">
+          <label>仿真时长 (T_stop) [s]</label>
+          <input type="number" step="any" value="15">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>输出采样频率 (F_samp) [Hz]</label>
+        <input type="number" step="any" value="100">
+      </div>
+    </fieldset>
+
+    <!-- 天线与望远镜 -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">光学与天线增益</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>望远镜放大系数 (G_op)</label>
+          <input type="number" step="any" value="7">
+        </div>
+        <div class="form-group">
+          <label>指向角/FPA增益 (FPA_op)</label>
+          <input type="number" step="any" value="1.414">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Detector -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">探测器参数 (Detector)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>视场半径 (FOV_D) [rad]</label>
+          <input type="number" step="any" value="0.004">
+        </div>
+        <div class="form-group">
+          <label>采样率 (f_D) [Hz]</label>
+          <input type="number" step="any" value="6000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>噪声幅度 (n_D) [rad]</label>
+        <input type="number" step="any" value="1e-6">
+      </div>
+    </fieldset>
+
+    <!-- FPA -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">精瞄组件 (FPA)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>转动惯量 (J_fsm) [kg·m²]</label>
+          <input type="number" step="any" value="1e-5">
+        </div>
+        <div class="form-group">
+          <label>控制器频率 (F_fpid) [Hz]</label>
+          <input type="number" step="any" value="6000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>最大偏转角 (fsm_max) [±rad]</label>
+        <input type="number" step="any" value="0.013">
+      </div>
+    </fieldset>
+
+    <!-- CPA -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px; margin-bottom: 20px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">粗瞄组件 (CPA)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>电阻 (R) [Ω]</label>
+          <input type="number" step="any" value="20">
+        </div>
+        <div class="form-group">
+          <label>电感 (L) [H]</label>
+          <input type="number" step="any" value="0.006">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>反电动势系数 (K_b)</label>
+          <input type="number" step="any" value="0.636">
+        </div>
+        <div class="form-group">
+          <label>力矩系数 (C_m)</label>
+          <input type="number" step="any" value="0.636">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>转动惯量 (J_m)</label>
+          <input type="number" step="any" value="0.5">
+        </div>
+        <div class="form-group">
+          <label>更新时间 (T_cp) [s]</label>
+          <input type="number" step="any" value="0.02">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>最大偏转角 [±deg]</label>
+          <input type="number" step="any" value="90">
+        </div>
+        <div class="form-group">
+          <label>最大转速 [deg/s]</label>
+          <input type="number" step="any" value="5">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- CPA Sensor -->
+    <fieldset style="border: 1px solid #eee; padding: 10px; border-radius: 8px;">
+      <legend style="padding: 0 10px; color: var(--accent-color); font-weight: bold;">CPA位置传感器 (码盘)</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label>采样周期 (T_mp) [s]</label>
+          <input type="number" step="any" value="2e-4">
+        </div>
+        <div class="form-group">
+          <label>码盘频率 (F_mp) [Hz]</label>
+          <input type="number" step="any" value="500">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>噪声功率 (pn_mp)</label>
+        <input type="number" step="any" value="1e-5">
+      </div>
+    </fieldset>
+  </div>
+  <div class="secondary-panel-footer">
+    <button class="btn-cancel">取消</button>
+    <button class="btn-save">确认保存</button>
+  </div>
+</div>
